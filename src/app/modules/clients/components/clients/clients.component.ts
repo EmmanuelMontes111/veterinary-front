@@ -4,6 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ClientsService } from 'src/app/modules/shared/services/clients/clients.service';
 import { NewClientComponent } from '../new-client/new-client.component';
 import { MatSnackBar, MatSnackBarRef, SimpleSnackBar } from '@angular/material/snack-bar';
+import { ConfirmclientComponent } from 'src/app/modules/shared/components/confirmclient/confirmclient.component';
 
 @Component({
   selector: 'app-clients',
@@ -84,6 +85,24 @@ export class ClientsComponent implements OnInit {
         this.getClients();
       } else if (result = 2) {
         this.openSnackBar("Se produjo un error al actualizar el cliente", "ERROR");
+      }
+
+    });
+  }
+
+  delete(id: any){
+    const dialogRef = this.dialog.open(ConfirmclientComponent, {
+      width: '450px',
+      data: {id:id}
+    });
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+
+      if (result = 1) {
+        this.openSnackBar("Cliente Eliminado", "Exitoso");
+        this.getClients();
+      } else if (result = 2) {
+        this.openSnackBar("Se produjo un error al eliminar el cliente", "ERROR");
       }
 
     });

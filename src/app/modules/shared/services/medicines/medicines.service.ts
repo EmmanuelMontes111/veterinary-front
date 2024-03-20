@@ -31,13 +31,23 @@ export class MedicinesService {
 
 
   /**
-* 
-* @returns update medicine
-*/
+  * 
+  * @returns update medicine
+  */
 
-  updateClient(body: any, id: any) {
+  updateMedicine(body: any, id: any) {
     const endpoint = `${base_url}/medicines/${id}`;
     return this.http.put(endpoint, body);
+  }
+
+  /**
+  * 
+  * @returns delete medicine
+  */
+
+  deleteMedicine(id: any) {
+    const endpoint = `${base_url}/medicines/${id}`;
+    return this.http.delete(endpoint);
   }
 
 }

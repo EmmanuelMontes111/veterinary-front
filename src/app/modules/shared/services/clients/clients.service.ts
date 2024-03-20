@@ -42,6 +42,17 @@ export class ClientsService {
     return this.http.put(endpoint, body);
   }
 
+   /**
+  * 
+  * @returns delete medicine
+  */
+
+   deleteClient(id: any) {
+    const endpoint = `${base_url}/clients/${id}`;
+    return this.http.delete(endpoint);
+  }
+
+
 
 }
 
