@@ -19,5 +19,16 @@ export class ClientsService {
     const endpoint = `${base_url}/clients`;
     return this.http.get(endpoint);
   }
+
+
+  /**
+ * 
+ * @returns save client
+ */
+
+  saveClient(body: any) {
+    const endpoint = `${base_url}/clients`;
+    return this.http.post(endpoint, body);
+  }
 }
 

@@ -4,12 +4,14 @@ import { ClientsComponent } from './components/clients/clients.component';
 import { MaterialModule } from '../shared/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { NewClientComponent } from './components/new-client/new-client.component';
 
 
 
 @NgModule({
   declarations: [
-    ClientsComponent
+    ClientsComponent,
+    NewClientComponent
   ],
   imports: [
     CommonModule,

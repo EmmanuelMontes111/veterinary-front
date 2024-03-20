@@ -10,12 +10,22 @@ export class MedicinesService {
 
   constructor(private http: HttpClient) { }
 
-/**
- * 
- * @returns get all medicines
- */
+  /**
+   * 
+   * @returns get all medicines
+   */
   getMedicines() {
     const endpoint = `${base_url}/medicines`;
     return this.http.get(endpoint);
+  }
+
+  /**
+* 
+* @returns save medicine
+*/
+
+  saveMedicine(body: any) {
+    const endpoint = `${base_url}/medicines`;
+    return this.http.post(endpoint, body);
   }
 }

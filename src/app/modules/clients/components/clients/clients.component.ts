@@ -1,6 +1,9 @@
 import { Component, OnInit, inject } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { ClientsService } from 'src/app/modules/shared/services/clients/clients.service';
+import { NewClientComponent } from '../new-client/new-client.component';
+import { MatSnackBar, MatSnackBarRef, SimpleSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-clients',
@@ -10,6 +13,8 @@ import { ClientsService } from 'src/app/modules/shared/services/clients/clients.
 export class ClientsComponent implements OnInit {
 
   private medicineService = inject(ClientsService);
+  public dialog = inject(MatDialog);
+  private snackBar = inject(MatSnackBar);
 
   ngOnInit(): void {
     this.getClients();
@@ -18,10 +23,11 @@ export class ClientsComponent implements OnInit {
   displayedColumns: string[] = ['clientId', 'name', 'lastName', 'residenceAddress', 'phoneNumber', 'actions'];
   dataSource = new MatTableDataSource<ClientElement>();
 
+
   getClients() {
     this.medicineService.getClients()
       .subscribe((data: any) => {
-
+        
         console.log("Respuesta de clientes: ", data);
         this.processClientsResponse(data);
       }, (error: any) => {
@@ -42,10 +48,32 @@ export class ClientsComponent implements OnInit {
       });
 
       this.dataSource = new MatTableDataSource<ClientElement>(dataClient);
-      
+
 
     }
+  }
 
+  openClientDialog() {
+    const dialogRef = this.dialog.open(NewClientComponent, {
+      width: '450px'
+    });
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+
+      if (result = 1) {
+        this.openSnackBar("Cliente Agregado", "Exitoso");
+        this.getClients();
+      } else if (result = 2) {
+        this.openSnackBar("Se produjo un error al guardar el cliente", "ERROR");
+      }
+
+    });
+  }
+
+  openSnackBar(message: string, action: string): MatSnackBarRef<SimpleSnackBar> {
+    return this.snackBar.open(message, action, {
+      duration: 200
+    })
   }
 
 }
