@@ -1,4 +1,5 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, ViewChild, inject } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { PetService } from 'src/app/modules/shared/services/pet/pet.service';
 
@@ -15,8 +16,11 @@ export class PetComponent implements OnInit {
     this.getPets();
   }
 
-  displayedColumns: string[] = ['id', 'name', 'breed', 'age', 'weight', 'actions'];
+  displayedColumns: string[] = ['id', 'name', 'breed', 'age', 'weight', 'client', 'actions'];
   dataSource = new MatTableDataSource<PetElement>();
+
+  @ViewChild(MatPaginator)
+  paginator!: MatPaginator; 
 
   getPets() {
     this.petService.getPets()
@@ -35,13 +39,15 @@ export class PetComponent implements OnInit {
 
     if (response.metadata[0].code = "200") {
 
-      let listClient = response.clientResponse.clients;
+      let listPets = response.petResponse.pets;
 
-      listClient.forEach((element: PetElement) => {
+      listPets.forEach((element: PetElement) => {
+        element.client = element.client.name;
         dataPet.push(element);
       });
 
       this.dataSource = new MatTableDataSource<PetElement>(dataPet);
+      this.dataSource.paginator = this.paginator;
 
 
     }
@@ -56,4 +62,5 @@ export interface PetElement {
   breed: string;
   age: number;
   weight: number;
+  client: any;
 }
