@@ -14,3 +14,12 @@ ul li{
 .right{
     margin-left: auto;
 }
+
+mat-form-field{
+    width: 140%;
+}
+
+.mat-cell:nth-child(1),
+.mat-header-cell:nth-child(1){
+    flex: 0 0 6%;
+}
