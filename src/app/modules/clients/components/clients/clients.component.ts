@@ -27,7 +27,7 @@ export class ClientsComponent implements OnInit {
   getClients() {
     this.medicineService.getClients()
       .subscribe((data: any) => {
-        
+
         console.log("Respuesta de clientes: ", data);
         this.processClientsResponse(data);
       }, (error: any) => {
@@ -69,6 +69,26 @@ export class ClientsComponent implements OnInit {
 
     });
   }
+
+
+  edit(id: number ,clientId: number, name: string, lastName: string, residenceAddress: string, phoneNumber: string) {
+    const dialogRef = this.dialog.open(NewClientComponent, {
+      width: '450px',
+      data: {id:id, clientId: clientId, name: name, lastName: lastName, residenceAddress: residenceAddress, phoneNumber: phoneNumber}
+    });
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+
+      if (result = 1) {
+        this.openSnackBar("Cliente Actualizado", "Exitoso");
+        this.getClients();
+      } else if (result = 2) {
+        this.openSnackBar("Se produjo un error al actualizar el cliente", "ERROR");
+      }
+
+    });
+  }
+
 
   openSnackBar(message: string, action: string): MatSnackBarRef<SimpleSnackBar> {
     return this.snackBar.open(message, action, {

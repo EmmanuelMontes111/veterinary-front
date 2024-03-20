@@ -68,6 +68,24 @@ export class MedicinesComponent implements OnInit {
 
   }
 
+
+  edit(id: number, name: string, description: string, dose: string){
+    const dialogRef = this.dialog.open(NewMedicineComponent, {
+      width: '450px',
+      data: {id:id, name: name, description: description, dose: dose}
+    });
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+
+      if (result = 1) {
+        this.openSnackBar("Medicina Actualizada", "Exitoso");
+        this.getMedicines();
+      } else if (result = 2) {
+        this.openSnackBar("Se produjo un error al actualizar la medicina", "ERROR");
+      }
+    });
+  }
+
   openSnackBar(message: string, action: string): MatSnackBarRef<SimpleSnackBar> {
     return this.snackBar.open(message, action, {
       duration: 200

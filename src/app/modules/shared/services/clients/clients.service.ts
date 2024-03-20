@@ -10,10 +10,10 @@ export class ClientsService {
 
   constructor(private http: HttpClient) { }
 
-/**
- * 
- * @returns get all clients
- */
+  /**
+   * 
+   * @returns get all clients
+   */
 
   getClients() {
     const endpoint = `${base_url}/clients`;
@@ -30,5 +30,18 @@ export class ClientsService {
     const endpoint = `${base_url}/clients`;
     return this.http.post(endpoint, body);
   }
+
+
+  /**
+* 
+* @returns update client
+*/
+
+  updateClient(body: any, id: any) {
+    const endpoint = `${base_url}/clients/${id}`;
+    return this.http.put(endpoint, body);
+  }
+
+
 }
 

@@ -28,4 +28,16 @@ export class MedicinesService {
     const endpoint = `${base_url}/medicines`;
     return this.http.post(endpoint, body);
   }
+
+
+  /**
+* 
+* @returns update medicine
+*/
+
+  updateClient(body: any, id: any) {
+    const endpoint = `${base_url}/medicines/${id}`;
+    return this.http.put(endpoint, body);
+  }
+
 }
