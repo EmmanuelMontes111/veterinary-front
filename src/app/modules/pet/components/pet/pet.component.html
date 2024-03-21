@@ -1,0 +1,108 @@
+<mat-card>
+
+    <h2 class="alinear">Listado De Mascotas</h2>
+    <mat-card-header>
+
+        <div>
+            <mat-form-field hintLabel="Busque una mascota" appearance="fill">
+
+                <mat-label>Buscar Mascotas</mat-label>
+                <input matInput #input>
+            </mat-form-field>
+        </div>
+    </mat-card-header>
+
+    <mat-card-header>
+
+        <div class="right">
+            <ul>
+                <li>
+                    <button mat-raised-button color="primary" (click)="openPetDialog()">Agregar
+                        Mascota</button>
+                </li>
+            </ul>
+        </div>
+
+    </mat-card-header>
+
+    <div mat-card-image></div>
+
+    <mat-card-content>
+
+        <table mat-table [dataSource]="dataSource" class="mat-cell">
+
+            <!-- id column-->
+
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef>N°</th>
+                <td mat-cell *matCellDef="let element">
+                    {{element.id}}</td>
+            </ng-container>
+
+            <!-- name column-->
+
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef>Nombre</th>
+                <td mat-cell *matCellDef="let element">
+                    {{element.name}}</td>
+            </ng-container>
+
+            <!-- breed column-->
+
+            <ng-container matColumnDef="breed">
+                <th mat-header-cell *matHeaderCellDef>Raza</th>
+                <td mat-cell *matCellDef="let element">
+                    {{element.breed}}</td>
+            </ng-container>
+
+            <!-- age column-->
+
+            <ng-container matColumnDef="age">
+                <th mat-header-cell *matHeaderCellDef>Edad</th>
+                <td mat-cell *matCellDef="let element">
+                    {{element.age}}</td>
+            </ng-container>
+
+            <!-- weight column-->
+
+            <ng-container matColumnDef="weight">
+                <th mat-header-cell *matHeaderCellDef>Peso</th>
+                <td mat-cell *matCellDef="let element">
+                    {{element.weight}}</td>
+            </ng-container>
+
+            <!-- client column-->
+
+            <ng-container matColumnDef="client">
+                <th mat-header-cell *matHeaderCellDef>Dueño</th>
+                <td mat-cell *matCellDef="let element">
+                    {{element.id}}</td>
+            </ng-container>
+
+            <!-- actions -->
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef>Acciones</th>
+                <td mat-cell *matCellDef="let element; let i=index;">
+                    <button mat-icon-button color="accent" (click)="edit(element.id, element.name, element.breed, element.age, element.weight, element.client)">
+                        <mat-icon aria-label="Edit">edit</mat-icon>
+                    </button>
+
+                    <button mat-icon-button color="accent" (click)="delete(element.id)">
+                        <mat-icon aria-label="Delete">delete</mat-icon>
+                    </button>
+
+                </td>
+
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5,10,20]" showFirstLastButtons=""></mat-paginator>
+
+
+    </mat-card-content>
+
+</mat-card>
