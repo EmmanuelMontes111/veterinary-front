@@ -6,6 +6,7 @@ import { MaterialModule } from './material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ConfirmComponent } from './components/confirm/confirm.component';
 import { ConfirmclientComponent } from './components/confirmclient/confirmclient.component';
+import { ConfirmpetComponent } from './components/confirmpet/confirmpet.component';
 
 
 
@@ -13,7 +14,8 @@ import { ConfirmclientComponent } from './components/confirmclient/confirmclient
   declarations: [
     SidenavComponent,
     ConfirmComponent,
-    ConfirmclientComponent
+    ConfirmclientComponent,
+    ConfirmpetComponent
   ],
   exports: [
     SidenavComponent

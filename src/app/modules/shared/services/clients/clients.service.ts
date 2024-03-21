@@ -44,7 +44,7 @@ export class ClientsService {
 
    /**
   * 
-  * @returns delete medicine
+  * @returns delete client
   */
 
    deleteClient(id: any) {
@@ -52,7 +52,15 @@ export class ClientsService {
     return this.http.delete(endpoint);
   }
 
+   /**
+  * 
+  * @returns find id client
+  */
 
+   findByIdClient(id: any) {
+    const endpoint = `${base_url}/clients/${id}`;
+    return this.http.get(endpoint);
+  }
 
 }
 

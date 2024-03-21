@@ -4,12 +4,14 @@ import { PetComponent } from './components/pet/pet.component';
 import { MaterialModule } from '../shared/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NewPetComponent } from './new-pet/new-pet.component';
 
 
 
 @NgModule({
   declarations: [
-    PetComponent
+    PetComponent,
+    NewPetComponent
   ],
   imports: [
     CommonModule,

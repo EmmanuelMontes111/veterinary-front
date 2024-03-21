@@ -17,7 +17,7 @@
         <div class="right">
             <ul>
                 <li>
-                    <button mat-raised-button color="primary">Agregar
+                    <button mat-raised-button color="primary" (click)="openPetDialog()">Agregar
                         Mascota</button>
                 </li>
             </ul>
@@ -29,7 +29,7 @@
 
     <mat-card-content>
 
-        <table mat-table [dataSource]="dataSource">
+        <table mat-table [dataSource]="dataSource" class="mat-cell">
 
             <!-- id column-->
 
@@ -76,18 +76,18 @@
             <ng-container matColumnDef="client">
                 <th mat-header-cell *matHeaderCellDef>Dueño</th>
                 <td mat-cell *matCellDef="let element">
-                    {{element.client}}</td>
+                    {{element.id}}</td>
             </ng-container>
 
             <!-- actions -->
             <ng-container matColumnDef="actions">
                 <th mat-header-cell *matHeaderCellDef>Acciones</th>
                 <td mat-cell *matCellDef="let element; let i=index;">
-                    <button mat-icon-button color="accent">
+                    <button mat-icon-button color="accent" (click)="edit(element.id, element.name, element.breed, element.age, element.weight, element.client)">
                         <mat-icon aria-label="Edit">edit</mat-icon>
                     </button>
 
-                    <button mat-icon-button color="accent">
+                    <button mat-icon-button color="accent" (click)="delete(element.id)">
                         <mat-icon aria-label="Delete">delete</mat-icon>
                     </button>
 
@@ -100,8 +100,8 @@
 
         </table>
 
-        <mat-paginator [pageSizeOptions]="[5,10,20]"
-            showFirstLastButtons></mat-paginator>
+        <mat-paginator [pageSizeOptions]="[5,10,20]" showFirstLastButtons=""></mat-paginator>
+
 
     </mat-card-content>
 
